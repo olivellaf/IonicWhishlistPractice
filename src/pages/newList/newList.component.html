@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{ list.title }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+        Tasks I have to do
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label floating>New item</ion-label>
+      <ion-input [(ngModel)]="itemName" type="text"
+        (keyup.enter)="addNewItem()"></ion-input>
+  </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="list.items.length > 0">
+    <ion-list-header>
+        To do:
+    </ion-list-header>
+    <ion-item-sliding *ngFor="let item of list.items; let i = index"
+      class="animated fadeInDown">
+      <button ion-item detail-none
+        (click)="refreshTask(item)">
+        <ion-icon *ngIf="item.finished" name="checkbox-outline" item-start></ion-icon>
+        <ion-icon *ngIf="!item.finished" name="square-outline" item-start></ion-icon>
+        {{ item.desc }}
+      </button>
+
+      <ion-item-options side="right">
+      <button (click)="removeItem(i)"
+        icon-only
+        ion-button color="danger">
+        <ion-icon name="close"></ion-icon>
+      </button>
+      </ion-item-options>
+
+    </ion-item-sliding>
+  </ion-list>
+
+</ion-content>

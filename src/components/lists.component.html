@@ -1,0 +1,24 @@
+<ion-list>
+  <ion-item-sliding #slidingItem *ngFor="let itemList of whishesServ.lists | finishedPipe:completed">
+
+    <button ion-item (click)="itemSelected(itemList)">
+      {{ itemList.title }}
+      <ion-note item-end>
+        {{ itemList.items.length }} items
+      </ion-note>
+    </button>
+
+    <ion-item-options side="left">
+      <button (click)="editListName(itemList, slidingItem)" ion-button icon-only color="info">
+        <ion-icon name="create"></ion-icon>
+      </button>
+    </ion-item-options>
+
+    <ion-item-options side="right">
+      <button (click)="removeList(itemList)" ion-button icon-only color="danger">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-item-options>
+
+  </ion-item-sliding>
+</ion-list>
